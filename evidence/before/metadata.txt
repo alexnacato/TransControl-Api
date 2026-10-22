@@ -1,6 +1,6 @@
 RUN_LABEL=before
-DATE=2026-10-21T20:00:27.7368458-05:00
+DATE=2026-10-21T20:41:07.2743558-05:00
 PYTHON=Python 3.13.16
 BRANCH=main
-COMMIT=b3d024bceb2786a53c8adf2b6dfd6168d3716b27
-STATUS=?? analisis-amenazas-parcial-1.md ?? evidence/ ?? metodologia-pruebas-automatizadas-parcial-1.md ?? pytest.ini ?? requirements-lab.lock ?? scripts/ ?? tests/
+COMMIT=53103c85552419ed3a9b229c5a64e6ce49ae89c7
+STATUS= M evidence/before/metadata.txt

@@ -13,6 +13,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
+from models.models import RolEnum
 
 from core.security import get_current_user, require_roles
 from database import get_db
@@ -224,6 +225,12 @@ def obtener_viaje(
     v = db.query(Viaje).filter(Viaje.id == viaje_id).first()
     if not v:
         raise HTTPException(404, "Viaje no encontrado")
+        
+    # --- AQUÍ ESTÁ LA SEGURIDAD AGREGADA ---
+    if current_user.rol == RolEnum.TRANSPORTISTA:
+        if v.transportista_id != current_user.id:
+            raise HTTPException(status_code=403, detail="No autorizado")
+    # ---------------------------------------
     return _viaje_out(v)
 
 
