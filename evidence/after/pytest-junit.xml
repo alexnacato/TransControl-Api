@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="4.155" timestamp="2026-10-21T20:59:27.635597-05:00" hostname="Alexander"><testcase classname="tests.test_security_regression" name="test_t1_me_requires_authentication" time="2.844" /><testcase classname="tests.test_security_regression" name="test_t2_me_rejects_invalid_token" time="0.017" /><testcase classname="tests.test_security_regression" name="test_t3_registration_rejects_invalid_input" time="0.021" /><testcase classname="tests.test_security_regression" name="test_t4_public_registration_cannot_create_gerente" time="0.019" /><testcase classname="tests.test_security_regression" name="test_t5_carrier_can_read_own_trip" time="0.048"><failure message="assert 403 == 200&#10; +  where 403 = &lt;Response [403 Forbidden]&gt;.status_code">client = &lt;starlette.testclient.TestClient object at 0x000002AD5CBBE9E0&gt;
+db = &lt;sqlalchemy.orm.session.Session object at 0x000002AD5E095E50&gt;
+
+    def test_t5_carrier_can_read_own_trip(client, db):
+        user, trip = _new_carrier_and_trip(db)
+        r = client.get(f"/api/viajes/{trip.id}", headers=_bearer_for(user))
+&gt;       assert r.status_code == 200
+E       assert 403 == 200
+E        +  where 403 = &lt;Response [403 Forbidden]&gt;.status_code
+
+tests\test_security_regression.py:96: AssertionError</failure></testcase><testcase classname="tests.test_security_regression" name="test_t6_carrier_cannot_read_another_carriers_trip" time="0.048" /></testsuite></testsuites>

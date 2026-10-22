@@ -226,9 +226,10 @@ def obtener_viaje(
     if not v:
         raise HTTPException(404, "Viaje no encontrado")
         
-    # --- AQUÍ ESTÁ LA SEGURIDAD AGREGADA ---
+    # --- AQUÍ ESTÁ LA SEGURIDAD CORREGIDA ---
     if current_user.rol == RolEnum.TRANSPORTISTA:
-        if v.transportista_id != current_user.id:
+        # Verificamos que el usuario tenga perfil de transportista y comparamos su ID de transportista
+        if not current_user.transportista or v.transportista_id != current_user.transportista.id:
             raise HTTPException(status_code=403, detail="No autorizado")
     # ---------------------------------------
     return _viaje_out(v)
